@@ -1,2 +1,3 @@
-/src/*.class
+/week1/*/*.class
+/week1/*/*.java~
 /.idea
