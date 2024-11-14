@@ -10,3 +10,5 @@
 /*/src/*/*/src/*.class
 /*/src/*/*/src/*.java~
 /*/.gitignore
+/*/src/*/*/.gitignore
+/*/src/*/*/*.iml
