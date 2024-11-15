@@ -103,4 +103,8 @@ class FizzBuzzTranslateTest {
         String result =  fizzBuzzTranslate.translate(number);
         assertEquals(expected, result);
     }
+
+    public static void main(String[] args) {
+
+    }
 }
