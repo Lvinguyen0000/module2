@@ -44,4 +44,14 @@ public class Product {
     public void setPrice(double price) {
         this.price = price;
     }
+
+    public void setInfo(String name, String description, double price){
+        setName(name);
+        setDescription(description);
+        setPrice(price);
+    }
+
+    public String toString(){
+        return "ID: " + getId() +  ", Name: " + getName() + ", Description: " + getDescription() + ", Price: " + getPrice();
+    }
 }
