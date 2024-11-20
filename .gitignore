@@ -12,3 +12,4 @@
 /*/.gitignore
 /*/src/*/*/.gitignore
 /*/src/*/*/*.iml
+/*.jar
