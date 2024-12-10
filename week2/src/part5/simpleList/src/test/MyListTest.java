@@ -1,3 +1,7 @@
+package part5.simpleList.src.test;
+
+import part5.simpleList.src.MyList;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 class MyListTest {
