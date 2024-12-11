@@ -15,4 +15,4 @@
 /*.jar
 /case-study
 /stolen
-/*/*/variable.env
+/*/.env

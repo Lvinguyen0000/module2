@@ -13,7 +13,7 @@ import io.github.cdimascio.dotenv.Dotenv;
 
 public class EmailHandler {
     private final Session session;
-    private final Dotenv dotenv = Dotenv.configure().filename("data/variable.env").load();
+    private final Dotenv dotenv = Dotenv.configure().filename(".env").load();
     private final String username = "lamvinguyen0000@gmail.com";
     public static final String BOOKING_EXPORT_PATH = System.getProperty("user.dir") + "\\data\\excel\\booking.xlsx";
 
