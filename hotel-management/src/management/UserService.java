@@ -18,7 +18,7 @@ public class UserService {
     }
 
     public User getUser(LoginForm loginForm){
-        String[] loginDataArray = USER_READ_WRITE_FILE.getLoginDataFromFile(null, loginForm);
+        String[] loginDataArray = USER_READ_WRITE_FILE.getLoginDataFromFile(loginForm);
         if (loginDataArray != null){
             return createUser(loginDataArray[0]);
         }
@@ -42,7 +42,7 @@ public class UserService {
     }
 
     public void changeLoginInfo(String id, LoginForm form){
-        String[] currentLogin = USER_READ_WRITE_FILE.getLoginDataFromFile(id, null);
+        String[] currentLogin = USER_READ_WRITE_FILE.getUserLoginById(id).split(",");
         if (form.getUsername() == null){
             form.setUsername(currentLogin[1]);
         }
@@ -57,7 +57,7 @@ public class UserService {
         return USER_READ_WRITE_FILE.getUserByString(email);
     }
 
-    public String getPasswordById(String id){
+    public String getLoginById(String id){
         return USER_READ_WRITE_FILE.getUserLoginById(id);
     }
 }

@@ -1,8 +1,11 @@
 package menu;
 
+import entities.LoginForm;
 import management.UserService;
 import utility.EmailHandler;
+import utility.Hash;
 import utility.NumberGetter;
+import utility.StringGenerator;
 
 import java.util.Objects;
 import java.util.Scanner;
@@ -50,9 +53,15 @@ public class GuestController {
 
         String tempData = UserService.getInstance().getUserByEmail(email);
         if (tempData != null){
-            tempData = UserService.getInstance().getPasswordById(tempData.split(",")[0]);
-            EmailHandler.getInstance().sendForgotPasswordAsync(email, tempData.split(",")[2]);
-            System.out.println("Please check you email to recover password");
+            tempData = UserService.getInstance().getLoginById(tempData.split(",")[0]);
+            String newPassword = StringGenerator.generateRandomString();
+
+            EmailHandler.getInstance().sendForgotPasswordAsync(email, newPassword);
+
+            String[] currentLogin = tempData.split(",");
+            UserService.getInstance().changeLoginInfo(currentLogin[0], new LoginForm(currentLogin[1], Hash.generateSHA256Hash(newPassword)));
+
+            System.out.println("Please check you email to get new password");
         }
         else{
             System.out.println("Email not found");

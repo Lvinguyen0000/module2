@@ -69,8 +69,8 @@ public class EmailHandler {
         Message message = new MimeMessage(session);
         message.setFrom(new InternetAddress(username));
         message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(sendTo));
-        message.setSubject("Forgot password");
-        message.setText("This is your password: " + password);
+        message.setSubject("New Password");
+        message.setText("Here is your new passward: " + password + "\nPlease login and change your password");
 
         Transport.send(message);
     }

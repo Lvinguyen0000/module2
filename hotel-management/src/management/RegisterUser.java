@@ -31,7 +31,7 @@ public class RegisterUser {
     private static void addNewUser(String[] infoArray) {
         String id = Hash.generateMD5Hash(infoArray[5] + infoArray[6]);
 
-        USER_READ_WRITE_FILE.writeLoginUserFile(id , new LoginForm(infoArray[5], infoArray[6]));
+        USER_READ_WRITE_FILE.writeLoginUserFile(id , new LoginForm(infoArray[5], Hash.generateSHA256Hash(infoArray[6])));
         USER_READ_WRITE_FILE.writeUserFile(id, infoArray[0], infoArray[1], infoArray[2], infoArray[3], infoArray[4]);
         USER_READ_WRITE_FILE.readAndWriteUserFundingFile(id, 0);
     }

@@ -1,6 +1,6 @@
 package menu;
 
-import utility.ExcelExport;
+import utility.Hash;
 import utility.NumberGetter;
 import utility.fileIO.UserReadWriteFile;
 import management.RegisterUser;
@@ -271,7 +271,7 @@ public class UserController {
                     break;
                 case 7:
                     getPassword(sb);
-                    tempPassword = sb.toString();
+                    tempPassword = Hash.generateSHA256Hash(sb.toString());
                     sb = new StringBuilder();
                     userNameOrPasswordChanged = true;
                     break;

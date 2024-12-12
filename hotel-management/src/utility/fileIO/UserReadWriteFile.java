@@ -2,6 +2,7 @@ package utility.fileIO;
 
 import entities.LoginForm;
 import entities.user.User;
+import utility.Hash;
 
 import java.io.*;
 import java.util.Objects;
@@ -31,12 +32,11 @@ public class UserReadWriteFile extends ReadWriteFile {
         return Objects.requireNonNull(readLineById(USER_INFO_PATH, id)).split(",");
     }
 
-    public String[] getLoginDataFromFile(String id, LoginForm form) {
+    public String[] getLoginDataFromFile(LoginForm form) {
         try (BufferedReader br = new BufferedReader(new FileReader(Objects.requireNonNull(getFile(USER_LOGIN_PATH))))) {
             String line;
             while ((line = br.readLine()) != null) {
-                if (line.split(",")[0].equals(id) ||
-                    (line.split(",")[1].equals(form.getUsername()) && line.split(",")[2].equals(form.getPassword()))) {
+                if (line.split(",")[1].equals(form.getUsername()) && line.split(",")[2].equals(Hash.generateSHA256Hash(form.getPassword()))) {
                     return line.split(",");
                 }
             }
@@ -65,7 +65,7 @@ public class UserReadWriteFile extends ReadWriteFile {
     }
 
     public void writeUserFile(String id, String name, String dob, String phone, String email, String address) {
-        writeNewLineToFile(USER_INFO_PATH, id + "," + name + "," + dob + "," + phone + "," + email + " ," + address + ",customer");
+        writeNewLineToFile(USER_INFO_PATH, id + "," + name + "," + dob + "," + phone + "," + email + "," + address + ",customer");
     }
 
     public void readAndWriteUserFundingFile(String id, long newFund) {
