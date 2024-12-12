@@ -170,6 +170,7 @@ public abstract class ReadWriteFile {
             bw.close();
 
             readerFile.delete();
+            delay();
             writerFile.renameTo(readerFile);
 
         }
@@ -275,6 +276,7 @@ public abstract class ReadWriteFile {
             // Rename the temporary file to the original file
             File readerFile = getFile(fileName);
             readerFile.delete();
+            delay();
             writerFile.renameTo(readerFile);
 
             return lineFound; // Return true if any line was found and deleted
@@ -329,5 +331,13 @@ public abstract class ReadWriteFile {
 
     public static void shutdownExecutor() {
         executor.shutdownNow();
+    }
+
+    public static void delay(){
+        try{
+            Thread.sleep(10);
+        } catch (InterruptedException e) {
+            Thread.currentThread().interrupt();
+        }
     }
 }
