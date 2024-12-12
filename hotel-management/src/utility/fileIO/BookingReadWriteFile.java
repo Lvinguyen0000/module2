@@ -36,4 +36,6 @@ public class BookingReadWriteFile extends ReadWriteFile{
     public void deleteBookingByRoomId(String id){
         deleteById(BOOKING_INFO_PATH, id);
     }
+
+    public void deleteBookingById(String id){deleteById(BOOKING_INFO_PATH, id);}
 }

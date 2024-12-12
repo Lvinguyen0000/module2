@@ -100,7 +100,7 @@ public class Booking implements ExportFile {
 
     @Override
     public String exportToFile(){
-        return bookingId + "," + userId + "," + roomId + "," + startDate + "," + endDate + "," + checkedIn;
+        return bookingId + "," + userId + "," + roomId + "," + sdf.format(startDate) + "," + sdf.format(endDate) + "," + checkedIn;
     }
 
     public boolean overlapDate(Booking booking2){

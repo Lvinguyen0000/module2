@@ -108,7 +108,7 @@ public class BookingController {
                 endDate = sdf.parse(tempStrDate);
             }
 
-            if (checkDateRange(startDate, endDate)) return;
+            if (!checkDateRange(startDate, endDate)) return;
 
             Booking booking = new Booking(currentUser.getId(), room.getId(), startDate, endDate, false);
             checkBooking(booking, room);
@@ -122,9 +122,9 @@ public class BookingController {
     private static boolean checkDateRange(Date startDate, Date endDate) {
         if (startDate.after(endDate)) {
             System.out.println("Invalid day range");
-            return true;
+            return false;
         }
-        return false;
+        return true;
     }
 
     private String enterDate() {
@@ -229,10 +229,23 @@ public class BookingController {
             }
         } else if (choice < list.size() && choice >= 0) {
             String[] bookingInfo = list.get(choice).split(",");
+            deleteBookingOption(bookingInfo[0]);
 
         }
         else {
             showUserBookingInfo(currentPage);
+        }
+    }
+
+    public void deleteBookingOption(String bookingId){
+        System.out.println("Delete this booking? (y/n");
+        String choice = sc.nextLine();
+
+        if (Objects.equals(choice, "y")){
+            BOOKING_SERVICE.deleteBookingById(bookingId);
+        }
+        else if (!(Objects.equals(choice, "n"))){
+            deleteBookingOption(bookingId);
         }
     }
 }

@@ -38,4 +38,6 @@ public class BookingService {
     public void deleteBookingByRoomId (String roomId){
         BOOKING_READ_WRITE_FILE.deleteBookingByRoomId(roomId);
     }
+
+    public void deleteBookingById (String bookingId){BOOKING_READ_WRITE_FILE.deleteBookingById(bookingId);}
 }
