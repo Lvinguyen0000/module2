@@ -8,10 +8,10 @@ import utility.NumberGetter;
 import utility.StringGenerator;
 
 import java.util.Objects;
-import java.util.Scanner;
+
+import static run.Main.sc;
 
 public class GuestController {
-    private static final Scanner sc = new Scanner(System.in);
     private static GuestController guestController = null;
 
     private GuestController(){}

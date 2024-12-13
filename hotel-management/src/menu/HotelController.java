@@ -8,12 +8,12 @@ import entities.user.User;
 
 import java.util.List;
 import java.util.Objects;
-import java.util.Scanner;
+
+import static run.Main.sc;
 
 public class HotelController {
     public static final HotelService HOTEL_SERVICE = HotelService.getInstance();
     public static final HotelReadWriteFile HOTEL_READ_WRITE_FILE = HotelReadWriteFile.getInstance();
-    private final Scanner sc = new Scanner(System.in);
     private static final int HOTEL_TO_SHOW = 5;
     private Hotel currentHotel = null;
     private User currentUser = null;

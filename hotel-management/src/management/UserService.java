@@ -4,6 +4,9 @@ import utility.fileIO.UserReadWriteFile;
 import entities.LoginForm;
 import entities.user.*;
 
+import static run.Main.sc;
+import static menu.UserController.VALIDATION_FACTORY;
+
 public class UserService {
     public static final UserReadWriteFile USER_READ_WRITE_FILE = UserReadWriteFile.getInstance();
     private static UserService userService = null;
@@ -59,5 +62,79 @@ public class UserService {
 
     public String getLoginById(String id){
         return USER_READ_WRITE_FILE.getUserLoginById(id);
+    }
+
+    public void getPassword(StringBuilder stringBuilder) {
+        String password;
+        do {
+            System.out.println("Please enter your password");
+            password = sc.nextLine();
+        }
+        while (!(VALIDATION_FACTORY.getValidation("password").validate(password)));
+        stringBuilder.append(password);
+    }
+
+    public void getUserName(StringBuilder stringBuilder) {
+        System.out.println("Please enter your username");
+        stringBuilder.append(sc.nextLine());
+    }
+
+    public void getAddress(StringBuilder stringBuilder) {
+        System.out.println("Please enter your address");
+        stringBuilder.append(sc.nextLine());
+    }
+
+    public void getEmail(StringBuilder stringBuilder) {
+        String email;
+        do {
+            System.out.println("Please enter your email");
+            email = sc.nextLine();
+        }
+        while (!(VALIDATION_FACTORY.getValidation("email").validate(email)));
+        stringBuilder.append(email);
+    }
+
+    public void getPhoneNumber(StringBuilder stringBuilder) {
+        String number;
+        do {
+            System.out.println("Please enter phone number");
+            number = sc.nextLine();
+        }
+        while (!(VALIDATION_FACTORY.getValidation("phone").validate(number)));
+        stringBuilder.append(number);
+    }
+
+    public void getDob(StringBuilder stringBuilder) {
+        String dob;
+        do {
+            System.out.println("Please enter date of birth");
+            dob = sc.nextLine();
+        }
+        while (!(VALIDATION_FACTORY.getValidation("dob").validate(dob)));
+        stringBuilder.append(dob);
+    }
+
+    public void getName(StringBuilder stringBuilder) {
+        System.out.println("Please enter your name");
+        stringBuilder.append(sc.nextLine());
+    }
+
+    public String getRegisterInformation() {
+        StringBuilder stringBuilder = new StringBuilder();
+
+        getName(stringBuilder);
+        stringBuilder.append(",");
+        getDob(stringBuilder);
+        stringBuilder.append(",");
+        getPhoneNumber(stringBuilder);
+        stringBuilder.append(",");
+        getEmail(stringBuilder);
+        stringBuilder.append(",");
+        getAddress(stringBuilder);
+        stringBuilder.append(",");
+        getUserName(stringBuilder);
+        stringBuilder.append(",");
+        getPassword(stringBuilder);
+        return stringBuilder.toString();
     }
 }

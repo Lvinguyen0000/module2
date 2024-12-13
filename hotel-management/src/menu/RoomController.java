@@ -10,13 +10,12 @@ import entities.user.User;
 
 import java.util.List;
 import java.util.Objects;
-import java.util.Scanner;
+
+import static run.Main.sc;
 
 public class RoomController {
     public static final RoomReadWriteFile ROOM_READ_WRITE_FILE = RoomReadWriteFile.getInstance();
-    public static final HotelService HOTEL_SERVICE = HotelService.getInstance();
     public static final RoomService ROOM_SERVICE = RoomService.getInstance();
-    private final Scanner sc = new Scanner(System.in);
     private static final int ROOM_TO_SHOW = 10;
     private User currentUser = null;
     private Hotel currentHotel = null;
@@ -81,11 +80,7 @@ public class RoomController {
         ROOM_READ_WRITE_FILE.writeNewRoom(room);
     }
 
-    private void printRoom(String roomData){
-        String[] spiltRoomData = roomData.split(",");
-        String hotelName = HOTEL_SERVICE.getHotelNameById(spiltRoomData[3]).split(",")[1];
-        System.out.println("Room: " + spiltRoomData[1] + ", id: " + spiltRoomData[0] + ", capacity: " + spiltRoomData[2] + ", price: " + spiltRoomData[4] + " | Hotel: " + hotelName);
-    }
+
 
     public void showRoomListOfHotel(int currentPage, boolean isGuest, boolean isPartner){
         int choice = -1;
@@ -94,7 +89,7 @@ public class RoomController {
         int i;
         for (i = 0; i < list.size(); i++){
             System.out.print(i + ". ");
-            printRoom(list.get(i));
+            ROOM_SERVICE.printRoom(list.get(i));
         }
 
         System.out.println("---------------------------------------------------------");
@@ -253,7 +248,7 @@ public class RoomController {
         int i;
         for (i = 0; i < list.size(); i++){
             System.out.print(i + ". ");
-            printRoom(list.get(i));
+            ROOM_SERVICE.printRoom(list.get(i));
         }
 
         System.out.println("---------------------------------------------------------");

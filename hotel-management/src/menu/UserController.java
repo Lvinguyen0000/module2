@@ -11,14 +11,14 @@ import entities.user.Partner;
 import entities.user.User;
 
 import java.util.Objects;
-import java.util.Scanner;
+
+import static run.Main.sc;
 
 public class UserController {
     public static final long PARTNERSHIP_FEE = 500000;
     public static final ValidationFactory VALIDATION_FACTORY = new ValidationFactory();
     public static final UserService USER_SERVICE = UserService.getInstance();
     public static final UserReadWriteFile USER_READ_WRITE_FILE = UserReadWriteFile.getInstance();
-    private Scanner sc = new Scanner(System.in);
     private static UserController userController = null;
 
     private UserController() {}
@@ -63,7 +63,7 @@ public class UserController {
     }
 
     public void register() {
-        String str = getRegisterInformation();
+        String str = USER_SERVICE.getRegisterInformation();
 
         if (RegisterUser.getInstance().checkRegisterInformation(str)) {
             System.out.println("Register successful");
@@ -71,81 +71,6 @@ public class UserController {
             System.out.println("Register failed");
         }
     }
-
-    private String getRegisterInformation() {
-        StringBuilder stringBuilder = new StringBuilder();
-
-        getName(stringBuilder);
-        stringBuilder.append(",");
-        getDob(stringBuilder);
-        stringBuilder.append(",");
-        getPhoneNumber(stringBuilder);
-        stringBuilder.append(",");
-        getEmail(stringBuilder);
-        stringBuilder.append(",");
-        getAddress(stringBuilder);
-        stringBuilder.append(",");
-        getUserName(stringBuilder);
-        stringBuilder.append(",");
-        getPassword(stringBuilder);
-        return stringBuilder.toString();
-    }
-
-    private void getPassword(StringBuilder stringBuilder) {
-        String password;
-        do {
-            System.out.println("Please enter your password");
-            password = sc.nextLine();
-        }
-        while (!(VALIDATION_FACTORY.getValidation("password").validate(password)));
-        stringBuilder.append(password);
-    }
-
-    private void getUserName(StringBuilder stringBuilder) {
-        System.out.println("Please enter your username");
-        stringBuilder.append(sc.nextLine());
-    }
-
-    private void getAddress(StringBuilder stringBuilder) {
-        System.out.println("Please enter your address");
-        stringBuilder.append(sc.nextLine());
-    }
-
-    private void getEmail(StringBuilder stringBuilder) {
-        String email;
-        do {
-            System.out.println("Please enter your email");
-            email = sc.nextLine();
-        }
-        while (!(VALIDATION_FACTORY.getValidation("email").validate(email)));
-        stringBuilder.append(email);
-    }
-
-    private void getPhoneNumber(StringBuilder stringBuilder) {
-        String number;
-        do {
-            System.out.println("Please enter phone number");
-            number = sc.nextLine();
-        }
-        while (!(VALIDATION_FACTORY.getValidation("phone").validate(number)));
-        stringBuilder.append(number);
-    }
-
-    private void getDob(StringBuilder stringBuilder) {
-        String dob;
-        do {
-            System.out.println("Please enter date of birth");
-            dob = sc.nextLine();
-        }
-        while (!(VALIDATION_FACTORY.getValidation("dob").validate(dob)));
-        stringBuilder.append(dob);
-    }
-
-    private void getName(StringBuilder stringBuilder) {
-        System.out.println("Please enter your name");
-        stringBuilder.append(sc.nextLine());
-    }
-
 
     public void showUserOption(User user) {
         System.out.println("Hello " + user.getName());
@@ -234,43 +159,43 @@ public class UserController {
 
             switch (choice) {
                 case 1:
-                    getName(sb);
+                    USER_SERVICE.getName(sb);
                     user.setName(sb.toString());
                     sb = new StringBuilder();
                     commonInfoChanged = true;
                     break;
                 case 2:
-                    getDob(sb);
+                    USER_SERVICE.getDob(sb);
                     user.setDob(sb.toString());
                     sb = new StringBuilder();
                     commonInfoChanged = true;
                     break;
                 case 3:
-                    getPhoneNumber(sb);
+                    USER_SERVICE.getPhoneNumber(sb);
                     user.setPhoneNumber(sb.toString());
                     sb = new StringBuilder();
                     commonInfoChanged = true;
                     break;
                 case 4:
-                    getEmail(sb);
+                    USER_SERVICE.getEmail(sb);
                     user.setEmail(sb.toString());
                     sb = new StringBuilder();
                     commonInfoChanged = true;
                     break;
                 case 5:
-                    getAddress(sb);
+                    USER_SERVICE.getAddress(sb);
                     user.setAddress(sb.toString());
                     sb = new StringBuilder();
                     commonInfoChanged = true;
                     break;
                 case 6:
-                    getUserName(sb);
+                    USER_SERVICE.getUserName(sb);
                     tempUserName = sb.toString();
                     sb = new StringBuilder();
                     userNameOrPasswordChanged = true;
                     break;
                 case 7:
-                    getPassword(sb);
+                    USER_SERVICE.getPassword(sb);
                     tempPassword = Hash.generateSHA256Hash(sb.toString());
                     sb = new StringBuilder();
                     userNameOrPasswordChanged = true;

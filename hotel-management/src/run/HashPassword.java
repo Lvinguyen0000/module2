@@ -1,3 +1,5 @@
+package run;
+
 import utility.Hash;
 
 import java.io.*;

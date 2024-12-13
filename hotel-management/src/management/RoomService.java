@@ -7,6 +7,7 @@ import java.util.List;
 
 public class RoomService {
     public static final RoomReadWriteFile ROOM_READ_WRITE_FILE = RoomReadWriteFile.getInstance();
+    private static final HotelService HOTEL_SERVICE = HotelService.getInstance();
     private static RoomService roomService = null;
 
     private RoomService(){}
@@ -41,5 +42,11 @@ public class RoomService {
 
     public List<String> sortRoom (int minCap, int maxCap, long minPrice, long maxPrice, int roomToShow, int page){
         return ROOM_READ_WRITE_FILE.sortRoom(minCap, maxCap, minPrice, maxPrice, roomToShow, page);
+    }
+
+    public void printRoom(String roomData){
+        String[] spiltRoomData = roomData.split(",");
+        String hotelName = HOTEL_SERVICE.getHotelNameById(spiltRoomData[3]).split(",")[1];
+        System.out.println("Room: " + spiltRoomData[1] + ", id: " + spiltRoomData[0] + ", capacity: " + spiltRoomData[2] + ", price: " + spiltRoomData[4] + " | Hotel: " + hotelName);
     }
 }

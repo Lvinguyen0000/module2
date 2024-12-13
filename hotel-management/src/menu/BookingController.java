@@ -1,12 +1,10 @@
 package menu;
 
 import management.BookingService;
-import management.UserService;
 import utility.EmailHandler;
 import utility.ExcelExport;
 import utility.NumberGetter;
 import utility.fileIO.UserReadWriteFile;
-import utility.validation.DateValidation;
 import entities.booking.Booking;
 import entities.room.Room;
 import entities.user.User;
@@ -93,76 +91,30 @@ public class BookingController {
 
         try {
             System.out.println("Enter start date");
-            tempStrDate = enterDate();
+            tempStrDate = BOOKING_SERVICE.enterDate();
 
             startDate = sdf.parse(tempStrDate);
 
 //            System.out.println("Enter end date");
             System.out.println("Enter end date or number of staying days");
-            tempStrDate = enterDate();
+            tempStrDate = BOOKING_SERVICE.enterDate();
 
-            if (isInteger(tempStrDate)) {
-                endDate = addDays(startDate, Integer.parseInt(tempStrDate));
+            if (BOOKING_SERVICE.isInteger(tempStrDate)) {
+                endDate = BOOKING_SERVICE.addDays(startDate, Integer.parseInt(tempStrDate));
             }
             else{
                 endDate = sdf.parse(tempStrDate);
             }
 
-            if (!checkDateRange(startDate, endDate)) return;
+            if (!BookingService.checkDateRange(startDate, endDate)) return;
 
             Booking booking = new Booking(currentUser.getId(), room.getId(), startDate, endDate, false);
-            checkBooking(booking, room);
+            BookingService.checkBooking(booking, room);
         }
         catch(ParseException e){
             System.out.println("Can't convert to date" + e.getMessage());
         }
 
-    }
-
-    private static boolean checkDateRange(Date startDate, Date endDate) {
-        if (startDate.after(endDate)) {
-            System.out.println("Invalid day range");
-            return false;
-        }
-        return true;
-    }
-
-    private String enterDate() {
-        String tempStrDate;
-        tempStrDate = sc.nextLine();
-        while (!(DateValidation.getInstance().validate(tempStrDate)) || isInteger(tempStrDate)) {
-            System.out.println("Invalid date");
-            tempStrDate = sc.nextLine();
-        }
-        return String.valueOf(tempStrDate);
-    }
-
-    private static void checkBooking(Booking booking, Room room) {
-        if (BOOKING_SERVICE.addBooking(booking)){
-            UserService.getInstance().addFund(booking.getUserId(), room.getPrice() * -1);
-
-            System.out.println("Booking successfully");
-        }
-        else{
-            System.out.println("Booking fail, please change the booking date");
-        }
-    }
-
-    public boolean isInteger (String str){
-        try {
-            Integer.parseInt(str);
-        } catch(NumberFormatException | NullPointerException e) {
-            return false;
-        }
-        // only got here if we didn't return false
-        return true;
-    }
-
-    private Date addDays(Date start, int daysToAdd){
-        Calendar calendar = Calendar.getInstance();
-        calendar.setTime(start);
-        calendar.add(Calendar.DAY_OF_MONTH, daysToAdd);
-        return calendar.getTime();
     }
 
     public void showUserBookingOption(){

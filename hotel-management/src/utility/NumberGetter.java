@@ -1,9 +1,8 @@
 package utility;
 
-import java.util.Scanner;
+import static run.Main.sc;
 
 public class NumberGetter {
-    private Scanner sc = new Scanner(System.in);
     private static NumberGetter numberGetter = null;
 
     private NumberGetter(){}
