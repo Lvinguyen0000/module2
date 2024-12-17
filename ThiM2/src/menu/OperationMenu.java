@@ -200,6 +200,7 @@ public class OperationMenu {
         }
 
         PhoneBookingManagement.getInstance().deleteInformation(phone);
+        System.out.println("Delete successfully");
     }
 
     public void readFileMenu(){
@@ -253,5 +254,7 @@ public class OperationMenu {
             System.out.println(phoneBooking);
             return;
         }
+
+        else System.out.println("Can't find information");
     }
 }
