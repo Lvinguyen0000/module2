@@ -74,6 +74,7 @@ public abstract class ReadWriteFile {
         return readLineById(fileName, parameter);
     }
 
+    //TODO: readLineById solution 1 (the function that run sequence)
 //    public static String readLineById(String fileName, String id) {
 //        try (BufferedReader br = new BufferedReader(new FileReader(Objects.requireNonNull(getFile(fileName))))){
 //            String line;
@@ -89,6 +90,7 @@ public abstract class ReadWriteFile {
 //        return null;
 //    }
 
+    //TODO: readLineById solution 2 (the function that run parallel -> improve performance)
     public static String readLineById(String fileName, String id) {
         long lineCount;
         try (Stream<String> stream = Files.lines(Path.of(fileName), StandardCharsets.UTF_8)) {

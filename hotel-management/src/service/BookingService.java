@@ -1,4 +1,4 @@
-package management;
+package service;
 
 import entities.room.Room;
 import utility.fileIO.BookingReadWriteFile;

@@ -1,6 +1,6 @@
-package menu;
+package controller;
 
-import management.BookingService;
+import service.BookingService;
 import utility.EmailHandler;
 import utility.ExcelExport;
 import utility.NumberGetter;
@@ -51,6 +51,7 @@ public class BookingController {
                     bookRoomOption(room);
                     break;
                 case 2:
+                    //TODO: add upcoming discount feature
                     break;
                 default:
                     break;

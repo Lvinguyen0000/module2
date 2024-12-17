@@ -1,20 +1,20 @@
-package management;
+package service;
 
 import utility.Hash;
 import utility.fileIO.UserReadWriteFile;
 import entities.LoginForm;
 
-public class RegisterUser {
+public class RegisterUserService {
     public static final UserReadWriteFile USER_READ_WRITE_FILE = UserReadWriteFile.getInstance();
-    private static RegisterUser registerUser = null;
+    private static RegisterUserService registerUserService = null;
 
-    private RegisterUser(){}
+    private RegisterUserService(){}
 
-    public static RegisterUser getInstance(){
-        if (registerUser == null){
-            registerUser = new RegisterUser();
+    public static RegisterUserService getInstance(){
+        if (registerUserService == null){
+            registerUserService = new RegisterUserService();
         }
-        return registerUser;
+        return registerUserService;
     }
 
     public boolean checkRegisterInformation(String information){

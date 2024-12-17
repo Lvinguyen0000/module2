@@ -1,7 +1,7 @@
-package menu;
+package controller;
 
 import entities.LoginForm;
-import management.UserService;
+import service.UserService;
 import utility.EmailHandler;
 import utility.Hash;
 import utility.NumberGetter;

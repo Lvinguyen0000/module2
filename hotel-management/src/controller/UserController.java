@@ -1,10 +1,10 @@
-package menu;
+package controller;
 
 import utility.Hash;
 import utility.NumberGetter;
 import utility.fileIO.UserReadWriteFile;
-import management.RegisterUser;
-import management.UserService;
+import service.RegisterUserService;
+import service.UserService;
 import utility.validation.ValidationFactory;
 import entities.LoginForm;
 import entities.user.Partner;
@@ -38,7 +38,7 @@ public class UserController {
         while ((choice != 1 || choice != 2) && user == null) {
             System.out.println("Wrong username or password\nChoose one of the following options:");
             System.out.println("1. Login");
-            System.out.println("2. Go back to main menu");
+            System.out.println("2. Go back to main controller");
 
             choice = NumberGetter.getInstance().getInt();
 
@@ -65,7 +65,7 @@ public class UserController {
     public void register() {
         String str = USER_SERVICE.getRegisterInformation();
 
-        if (RegisterUser.getInstance().checkRegisterInformation(str)) {
+        if (RegisterUserService.getInstance().checkRegisterInformation(str)) {
             System.out.println("Register successful");
         } else {
             System.out.println("Register failed");
@@ -116,7 +116,7 @@ public class UserController {
             System.out.println("1. Change account information");
             System.out.println("2. Check funding");
             System.out.println("3. Check partnership status");
-            System.out.println("4. Go back to main menu");
+            System.out.println("4. Go back to main controller");
 
             choice = NumberGetter.getInstance().getInt();
 

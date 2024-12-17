@@ -1,6 +1,6 @@
-package menu;
+package controller;
 
-import management.HotelService;
+import service.HotelService;
 import utility.NumberGetter;
 import utility.fileIO.HotelReadWriteFile;
 import entities.hotel.Hotel;

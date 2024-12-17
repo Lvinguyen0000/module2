@@ -2,8 +2,8 @@ package run;
 
 import utility.NumberGetter;
 import utility.fileIO.ReadWriteFile;
-import menu.GuestController;
-import menu.UserController;
+import controller.GuestController;
+import controller.UserController;
 import entities.user.User;
 
 import java.util.Scanner;

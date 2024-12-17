@@ -1,11 +1,11 @@
-package management;
+package service;
 
 import utility.fileIO.UserReadWriteFile;
 import entities.LoginForm;
 import entities.user.*;
 
 import static run.Main.sc;
-import static menu.UserController.VALIDATION_FACTORY;
+import static controller.UserController.VALIDATION_FACTORY;
 
 public class UserService {
     public static final UserReadWriteFile USER_READ_WRITE_FILE = UserReadWriteFile.getInstance();
