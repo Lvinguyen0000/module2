@@ -32,7 +32,7 @@ public class Main {
                     OperationMenu.getInstance().updateMenu();
                     break;
                 case 4:
-                    OperationMenu.getInstance().updateMenu();
+                    OperationMenu.getInstance().deleteMenu();
                     break;
                 case 5:
                     OperationMenu.getInstance().findMenu();
